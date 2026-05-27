@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Organizers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+    body {
+    font-family: 'Space Grotesk', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+.navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        box-sizing: border-box;
+        background-color: white;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        }
+
+        .logo img {
+        height: 60px;
+        width: auto;
+        }
+
+        .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 30px;
+        }
+        .nav-links .logout-btn {
+      margin-left: auto;
+      background-color: #1c3d3f;
+      border-radius: 5px;
+    }
+    
+    .nav-links .logout-btn a {
+      color: white;
+      padding: 8px 12px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .nav-links .logout-btn a:hover {
+      background-color: #74A0AA;
+      border-radius: 5px;
+    }
+    
+
+
+        .nav-links li a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        transition: color 0.3s;
+        }
+
+        .nav-links li a:hover {
+        color: #1c3d3f;
+        }
+
+        .menu-toggle {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        }
+
+        .menu-toggle div {
+        width: 25px;
+        height: 3px;
+        background: #333;
+        margin: 5px 0;
+        transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+        .nav-links {
+            display: none;
+            flex-direction: column;
+            background: white;
+            position: absolute;
+            top: 70px;
+            right: 0;
+            width: 100%;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            border-top: 1px solid #ccc;
+            padding: 15px 0;
+        }
+
+        .nav-links.active {
+            display: flex;
+        }
+
+        .menu-toggle {
+            display: flex;
+        }
+        }
+
+.organizers-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 80px 40px; /* space between organizers */
+    padding: 100px 50px 50px; /* top space for navbar + side space */
+}
+
+.organizer-card {
+    background-color: white;
+    width: 280px;
+    height: 240px; /* Increased height for more space */
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    text-align: center;
+    position: relative; /* Set relative position for image positioning */
+    padding: 70px 20px 20px; /* Increased padding at the top to move text below the circle */
+    transition: transform 0.3s ease;
+    margin-bottom: 40px;
+}
+
+.organizer-card:hover {
+    transform: scale(1.05);
+}
+
+.organizer-card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    position: absolute;
+    top: -75px; /* Move the image 75px above the card to create overlap */
+    left: 50%;
+    transform: translateX(-50%); /* Center the image horizontally */
+    border: 4px solid #74A0AA;
+}
+
+.organizer-info {
+    padding: 10px 0 10px; /* Adjust the padding to accommodate the overlapping image */
+}
+
+.organizer-info h3 {
+    margin: 10px 0;
+    color: #1c3d3f;
+    font-size: 22px;
+}
+
+.organizer-info p {
+    margin: 5px 0;
+    color: #555;
+    font-size: 14px;
+}
+
+.events {
+    margin-top: 10px;
+}
+
+.events a {
+    display: inline-block;
+    margin: 5px;
+    padding: 6px 12px;
+    background-color: #1c3d3f;
+    color: white;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 13px;
+    transition: background-color 0.3s ease;
+}
+
+.events a:hover {
+    background-color: #174045;
+}
+
+.footer {
+    background-color: #74A0AA;
+    text-align: center;
+    padding: 40px 20px;
+    position: relative;
+    bottom: 0;
+}
+
+.footer-top {
+    margin-bottom: 40px; /* Add space between button section and text section */
+}
+
+.footer-bottom p {
+    margin-bottom: 10px;
+}
+
+.footer-bottom {
+    margin-top: 40px;
+}
+
+  
+  .footer-links a {
+    color:#1c3d3f;
+    text-decoration: none;
+    margin: 0 5px;
+  }
+  
+  .footer-links a:hover {
+    text-decoration: underline;
+  }
+
+.join-text {
+    color: white;
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.become-organizer-btn {
+    background-color: #1c3d3f;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-size: 16px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    margin-bottom: 40px;
+}
+
+.become-organizer-btn:hover {
+    background-color: #174045;
+}
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+          <img src="logo.png" alt="Event Logo">
+        </div>
+        <div class="menu-toggle" id="menuToggle">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="home.html">Home</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="organizers.html">Organizers</a></li>
+          <li><a href="judges.html">Judges</a></li>
+          <li><a href="sponsors.html">Sponsors</a></li>
+          <li><a href="registration.html">Register</a></li>
+          <li><a href="faq.html">FAQs</a></li>
+          <li class="logout-btn"><a href="login.html">Logout</a></li>
+        </ul>
+    </nav>
+    
+    <section style="text-align: center; padding-top: 70px;">
+        <h1 style="font-size: 36px; color: #1c3d3f; margin-bottom: 8px;">Meet Our Organizing Team</h1>
+        <p style="font-size: 18px; color: #555; margin-top: 0;">The passionate individuals who make every event unforgettable!</p>
+    </section>
+    
+    
+
+    <div class="organizers-container">
+        <div class="organizer-card">
+            <img src="organizer1.jpg" alt="Organizer 1">
+            <div class="organizer-info">
+                <h3>Ali Ahmed</h3>
+                <p>Department: Computer Science</p>
+                <p>Society: Tech Society</p>
+                <div class="events">
+                    <a href="hackathon.html">AI Hackathon</a>
+                    <a href="ai-challenge.html">Web Dev</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="organizer-card">
+            <img src="organizer2.jpg" alt="Organizer 2">
+            <div class="organizer-info">
+                <h3>Sarah Khan</h3>
+                <p>Department: Business Administration</p>
+                <p>Society: Entrepreneurship Club</p>
+                <div class="events">
+                    <a href="case-study.html">Entrepreneural Venture</a>
+                    <a href="startup-challenge.html">Case Quest</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="organizer-card">
+            <img src="organizer3.jpg" alt="Organizer 3">
+            <div class="organizer-info">
+                <h3>Hamza Malik</h3>
+                <p>Department: Media Sciences</p>
+                <p>Society: Photography Society</p>
+                <div class="events">
+                    <a href="photography.html">Bait Baazi</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="organizer-card">
+            <img src="organizer4.avif" alt="Organizer 4">
+            <div class="organizer-info">
+                <h3>Fatima Noor</h3>
+                <p>Department: Electrical Engineering</p>
+                <p>Society: Gaming Club</p>
+                <div class="events">
+                    <a href="esports.html">NaSCon Valo Showdown</a>
+                    <a href="console-gaming.html">Squid Bizz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="footer-top">
+            <p class="join-text">Join Our Team!</p>
+            <a href="organizerform.html" class="become-organizer-btn">Become an Event Organizer</a>
+        </div>
+    
+        <div class="footer-bottom">
+            <p>© 2025 Event Name. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="faq.html">FAQ</a> | 
+                <a href="contactus.html">Contact</a> | 
+                <a href="home.html">About</a>
+            </div>
+        </div>
+    </footer>
+    
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+    
+    
+        menuToggle.addEventListener('click', () => {
+          navLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

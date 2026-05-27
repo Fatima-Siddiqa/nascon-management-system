@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Register Form</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">
+      <img src="logo.png" alt="Event Logo">
+    </div>
+    <div class="menu-toggle" id="menuToggle">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="organizers.html">Organizers</a></li>
+      <li><a href="judges.html">Judges</a></li>
+      <li><a href="sponsors.html">Sponsors</a></li>
+      <li><a href="registration.html">Register</a></li>
+      <li><a href="faq.html">FAQs</a></li>
+      <li class="logout-btn"><a href="login.html">Logout</a></li>
+    </ul>
+  </nav>
+
+  <section class="registration-section">
+    <div class="registration-container">
+
+      <!-- Left side content -->
+      <div class="registration-info">
+        <h2 class="register-heading">Register for Event</h2>
+        <p>Fill out the form to register as an Individual or a Team.<br><br>  
+           If registering as a team, you can add more participants easily!<br><br>
+            Please make sure to add correct information, as it will be helpful in correct indetification of yours.</p>
+      
+        <!-- Add Image Here -->
+        <div class="registration-image">
+          <img src="rgstrf.png" alt="Registration Logo">
+        </div>
+      </div>
+      <!-- Right side form -->
+    <div class="registration-divider"></div>
+      <div class="registration-form">
+        <form id="registration-form">
+
+          <div class="form-group">
+            <label for="registration-type">Register As:</label>
+            <select id="registration-type" name="registration-type" required onchange="toggleTeamFields()">
+              <option value="">-- Please choose --</option>
+              <option value="individual">Individual</option>
+              <option value="team">Team</option>
+            </select>
+          </div>
+
+          <div id="participants">
+            <div class="participant">
+              <h3>Participant 1</h3>
+
+              <div class="form-group">
+                <label>Name:</label>
+                <input type="text" name="name" required>
+              </div>
+
+              <div class="form-group">
+                <label>Institution Name:</label>
+                <input type="text" name="institution" required>
+              </div>
+
+              <div class="form-group">
+                <label>Phone Number:</label>
+                <input type="tel" name="phone" required>
+              </div>
+
+              <div class="form-group">
+                <label>CNIC:</label>
+                <input type="text" name="cnic" required>
+              </div>
+
+              <div class="form-group">
+                <label>Email:</label>
+                <input type="email" name="email" required>
+              </div>
+
+              <div class="form-group">
+                <label>Event Name:</label>
+                <select name="eventId" required>
+                  <option value="ai_hackathon">AI HACKATHON</option>
+                  <option value="web_dev">WEB DEV</option>
+                  <option value="genai_masterpiece">GENAI MASTERPIECE</option>
+                  <option value="edathon">EDATHON</option>
+                  <option value="entrepreneurial_venture">ENTREPRENEURIAL VENTURE</option>
+                  <option value="business_scavenger_hunt">BUSINESS SCAVENGER HUNT</option>
+                  <option value="case_quest">CASE QUEST</option>
+                  <option value="crypto">CRYPTO</option>
+                  <option value="squid_bizz">SQUID BIZZ</option>
+                  <option value="nascon_fifa_frenzy">NASCON FIFA FRENZY</option>
+                  <option value="tekken_iron_fist_championship">TEKKEN IRON FIST CHAMPIONSHIP</option>
+                  <option value="nascon_valo_showdown">NASCON VALO SHOWDOWN</option>
+                  <option value="nascon_got_talent">NASCON GOT TALENT</option>
+                  <option value="bait_baazi">BAIT BAAZI</option>
+                  <option value="dish_it_out">DISH IT OUT</option>
+                  <option value="battle_of_the_bands">BATTLE OF THE BANDS</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>Address:</label>
+                <input type="text" name="address" required>
+              </div>
+
+              <div class="form-group">
+                <label>Do you want accommodation?</label><br>
+                <div style="display: flex; gap: 30px; margin-top: 8px;">
+                  <label style="display: flex; align-items: center;">
+                    <input type="radio" name="accommodation" value="yes" required style="margin-right: 6px;"> Yes
+                  </label>
+                  <label style="display: flex; align-items: center;">
+                    <input type="radio" name="accommodation" value="no" required style="margin-right: 6px;"> No
+                  </label>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <button type="button" id="add-participant" class="btn-secondary1" style="display: none;">➕ Add Participant</button>
+
+          
+          <button type="submit" class="btn-primary">Submit Registration</button>
+          <button id="proceedToPaymentBtn" type="button" style="display:none; margin-top: 20px;" class="btn-primary">Proceed to Payment</button>
+
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+   <!-- Footer -->
+   <footer>
+    <p>© 2025 NASCON. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="faq.html">FAQ</a> | 
+      <a href="contactus.html">Contact</a> | 
+      <a href="home.html">About</a>
+    </div>
+  </footer>
+ 
+  <script src="registration.js"></script>
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    document.getElementById('registration-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const registrationType = document.getElementById('registration-type').value;
+
+  if (registrationType === 'team') {
+    // Use FormData to get all values for each field
+    const formData = new FormData(this);
+
+    const names = formData.getAll('name[]');
+    const institutions = formData.getAll('institution[]');
+    const phones = formData.getAll('phone[]');
+    const cnics = formData.getAll('cnic[]');
+    const emails = formData.getAll('email[]');
+    const eventIds = formData.getAll('eventId[]');
+    const addresses = formData.getAll('address[]');
+
+    // For accommodation, you must use unique names (e.g., accommodation1, accommodation2, ...)
+    // Or, if you use the same name, get all checked values in order:
+    const accommodations = [];
+    document.querySelectorAll('.participant').forEach((div, idx) => {
+      const checked = div.querySelector('input[type="radio"]:checked');
+      accommodations.push(checked ? checked.value : 'no');
+    });
+
+    // Build participants array
+    const participants = names.map((_, i) => ({
+      name: names[i],
+      institution: institutions[i],
+      phone: phones[i],
+      cnic: cnics[i],
+      email: emails[i],
+      eventId: eventIds[i],
+      address: addresses[i],
+      accommodation: accommodations[i]
+    }));
+
+    try {
+      const response = await fetch('/register-team', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ participants })
+      });
+      const result = await response.text();
+      alert(result);
+      if (result.includes('successful')) {
+        this.reset();
+        document.getElementById('proceedToPaymentBtn').style.display = 'inline-block';
+      }
+    } catch (error) {
+      alert('Error submitting registration: ' + error.message);
+    }
+  } else {
+    // Individual registration (as before)
+    const formData = new FormData(this);
+    const data = {
+      name: formData.get('name'),
+      institution: formData.get('institution'),
+      email: formData.get('email'),
+      phone: formData.get('phone'),
+      cnic: formData.get('cnic'),
+      eventId: formData.get('eventId'),
+      accommodation: formData.get('accommodation'),
+      address: formData.get('address')
+    };
+
+    try {
+      const response = await fetch('/register-individual', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const result = await response.text();
+      alert(result);
+      if (result.includes('successful')) {
+        this.reset();
+        document.getElementById('proceedToPaymentBtn').style.display = 'inline-block';
+      }
+    } catch (error) {
+      alert('Error submitting registration: ' + error.message);
+    }
+  }
+});
+
+    function toggleTeamFields() {
+      const regType = document.getElementById('registration-type').value;
+      document.getElementById('add-participant').style.display = regType === 'team' ? 'block' : 'none';
+    }
+
+    document.getElementById('proceedToPaymentBtn').addEventListener('click', function() {
+      window.location.href = "paymentform.html";
+    });
+  </script>
+
+</body>
+</html>

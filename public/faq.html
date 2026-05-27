@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQs - NASCON</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+          <img src="logo.png" alt="Event Logo">
+        </div>
+        <div class="menu-toggle" id="menuToggle">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="home.html">Home</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="organizers.html">Organizers</a></li>
+          <li><a href="judges.html">Judges</a></li>
+          <li><a href="sponsors.html">Sponsors</a></li>
+          <li><a href="registration.html">Register</a></li>
+          <li><a href="faq.html">FAQs</a></li>
+          <li class="logout-btn"><a href="login.html">Logout</a></li>
+        </ul>
+    </nav>
+
+    <section class="faq-container">
+        <div class="faq-left">
+          <h1>Frequently<br> asked questions</h1>
+          <p>Find answers to the most common queries about the event, registration, and participation.</p>
+          <a href="contactus.html" class="faq-btn">Contact Us</a>
+          <div class="faq-image">
+            <img src="faq1.PNG" alt="FAQ illustration">
+        </div>
+        </div>
+
+        <div class="faq-right">
+            <div class="faq-item">
+                <div class="faq-question">What is NASCON?</div>
+                <div class="faq-answer">NASCON (National Solutions Convention) is FAST-NU's flagship annual event featuring a wide range of competitions across domains like coding, gaming, singing, cooking, and more. Students from universities across Pakistan participate in this exciting three-day event.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Where is NASCON held?</div>
+                <div class="faq-answer">NASCON is held entirely within the premises of FAST-NU. All competitions, activities, and the closing ceremony take place inside the university</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Who can participate in NASCON?</div>
+                <div class="faq-answer">Students from universities and colleges across Pakistan are eligible to register and compete in the various events at NASCON.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Is accomodation available for participants?</div>
+                <div class="faq-answer">Yes, participants who require accommodation can avail of it. Accommodation arrangements are managed by the NASCON team and are located within the university facilities.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How I can register for events?</div>
+                <div class="faq-answer">You can register for your desired events directly through the NASCON management app or the official NASCON website. Each event will have its own registration form and requirements with each event having its own separate registration charges.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Can I participate in multiple events?</div>
+                <div class="faq-answer">Yes! You are welcome to participate in multiple events as long as their schedules do not clash. Make sure to check event timings before registering.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How can I get updates during NASCON?</div>
+                <div class="faq-answer">All important updates, schedules, and announcements will be available through the NASCON management app, websites or social media accounts at diffrent platforms and at designated help desks inside the university.</div>
+            </div>
+        </div>
+    </section>
+
+     <!-- Footer -->
+  <footer>
+    <p>© 2025 NASCON. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="faq.html">FAQ</a> | 
+      <a href="contactus.html">Contact</a> | 
+      <a href="home.html">About</a>
+    </div>
+  </footer>
+
+    <script src="script.js"></script>
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+    
+    
+        menuToggle.addEventListener('click', () => {
+          navLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

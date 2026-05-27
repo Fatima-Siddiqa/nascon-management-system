@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    body {
+      background-color: #f7f7f7;
+      padding-top: 70px;
+      overflow-x: hidden;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      background-color: white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .logo img {
+      height: 60px;
+      width: auto;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links li a:hover {
+      color: #1c3d3f;
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .menu-toggle div {
+      width: 25px;
+      height: 3px;
+      background: #333;
+      margin: 5px 0;
+      transition: all 0.3s ease;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: white;
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 100%;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        border-top: 1px solid #ccc;
+        padding: 15px 0;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+    }
+
+    .thank-you {
+      display: none;
+      position: fixed;
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #4CAF50;
+      color: white;
+      padding: 15px 30px;
+      border-radius: 8px;
+      font-weight: 600;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      z-index: 1001;
+      transition: top 0.5s ease;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px 10px;
+      align-items: flex-start;
+      gap: 40px;
+    }
+
+    .text-info {
+      flex: 1;
+    }
+
+    .text-info h2 {
+      font-size: 28px;
+      color: #1c3d3f;
+      margin-bottom: 15px;
+    }
+
+    .text-info p {
+      font-size: 16px;
+      color: #444;
+      margin-bottom: 20px;
+    }
+
+    .text-info .info {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .text-info a {
+      text-decoration: underline;
+      color: #444;
+    }
+
+    .text-info img {
+      width: 100%;
+      max-width: 400px;
+      margin-top: 10px;
+    }
+
+    .contact-details p {
+      margin-bottom: 5px;
+    }
+
+    .form-box {
+      flex: 1;
+      background: white;
+      padding: 20px 25px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin: 10px 0 5px;
+      font-weight: 500;
+    }
+
+    input, textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    button {
+      background-color: #1c3d3f;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #174045;
+    }
+
+    .agreement {
+      font-size: 12px;
+      color: #666;
+      margin-top: 10px;
+    }
+
+    .disclaimer {
+      display: none;
+    }
+
+    /* Footer */
+    footer {
+        text-align: center;
+        padding: 20px;
+        background:  #74A0AA;
+        margin-top: 40px;
+    }
+    
+    .footer-links a {
+        color:#1c3d3f;
+        text-decoration: none;
+        margin: 0 5px;
+    }
+    
+    .footer-links a:hover {
+        text-decoration: underline;
+    }
+
+    .nav-links .logout-btn {
+      margin-left: auto;
+      background-color: #1c3d3f;
+      border-radius: 5px;
+    }
+    
+    .nav-links .logout-btn a {
+      color: white;
+      padding: 8px 12px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .nav-links .logout-btn a:hover {
+      background-color: #74A0AA;
+      border-radius: 5px;
+    }
+    
+
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="logo">
+      <img src="logo.png" alt="Event Logo">
+    </div>
+    <div class="menu-toggle" id="menuToggle">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="organizers.html">Organizers</a></li>
+      <li><a href="judges.html">Judges</a></li>
+      <li><a href="sponsors.html">Sponsors</a></li>
+      <li><a href="registration.html">Register</a></li>
+      <li><a href="faq.html">FAQs</a></li>
+      <li class="logout-btn"><a href="login.html">Logout</a></li>
+    </ul>
+  </nav>
+
+  <div class="thank-you" id="thankYouMessage">Thank you for your message!</div>
+
+  <div class="container">
+    <div class="text-info">
+      <h2>Contact Us</h2>
+      <p>NaSCon Team is always here to help you. If you have any questions, feedback or just need assistance, please don't hesitate to reach out to us.</p>
+      <img src="contact-us.png" alt="Contact Us Illustration">
+      <div class="contact-details">
+        <p><strong>Phone:</strong> 051-123456789</p>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=support@nascon.com" target="_blank">support@nascon.com</a>
+      </div>
+    </div>
+
+    <div class="form-box">
+      <form id="contactForm">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" required />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" required />
+
+        <label for="message">Your Message</label>
+        <textarea id="message" rows="5" required></textarea>
+
+        <div class="agreement">
+          By submitting this form you agree to our terms and privacy policy.
+        </div>
+
+        <button type="submit">Send Message</button>
+      </form>
+      <p class="disclaimer">By submitting this form you agree to our terms and privacy policy.</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Event Name. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="faq.html">FAQ</a> | 
+      <a href="contactus.html">Contact</a> | 
+      <a href="home.html">About</a>
+    </div>
+  </footer>
+
+  <script>
+    const form = document.getElementById('contactForm');
+    const thankYouMessage = document.getElementById('thankYouMessage');
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      thankYouMessage.style.display = 'block';
+
+      setTimeout(() => {
+        thankYouMessage.style.top = '20px';
+      }, 100);
+
+      setTimeout(() => {
+        thankYouMessage.style.top = '-80px';
+        setTimeout(() => {
+          thankYouMessage.style.display = 'none';
+        }, 500);
+      }, 3000);
+
+      form.reset();
+    });
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>

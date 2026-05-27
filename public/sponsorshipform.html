@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sponsorship Form</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    body {
+      background-color: #f7f7f7;
+      padding-top: 70px;
+      overflow-x: hidden;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      background-color: white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .logo img {
+      height: 60px;
+      width: auto;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links li a:hover {
+      color: #1c3d3f;
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .menu-toggle div {
+      width: 25px;
+      height: 3px;
+      background: #333;
+      margin: 5px 0;
+      transition: all 0.3s ease;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: white;
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 100%;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        border-top: 1px solid #ccc;
+        padding: 15px 0;
+      }
+      .nav-links .logout-btn {
+      margin-left: auto;
+      background-color: #1c3d3f;
+      border-radius: 5px;
+    }
+    
+    .nav-links .logout-btn a {
+      color: white;
+      padding: 8px 12px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .nav-links .logout-btn a:hover {
+      background-color: #74A0AA;
+      border-radius: 5px;
+    }
+    
+
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+    }
+
+    .thank-you {
+      display: none;
+      position: fixed;
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #4CAF50;
+      color: white;
+      padding: 15px 30px;
+      border-radius: 8px;
+      font-weight: 600;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      z-index: 1001;
+      transition: top 0.5s ease;
+    }
+
+    .response-submitted {
+  display: none;
+  position: fixed;
+  top: 20px; /* Ensure it's positioned well above the form */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #FF5733; /* Change this to any color you prefer */
+  color: white;
+  padding: 15px 30px;
+  border-radius: 8px;
+  font-weight: 600;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  z-index: 1001; /* Ensure it appears above other elements */
+  transition: top 0.5s ease;
+}
+
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px 10px;
+      align-items: flex-start;
+      gap: 40px;
+    }
+
+    .form-box {
+      flex: 1;
+      background: white;
+      padding: 20px 25px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin: 10px 0 5px;
+      font-weight: 500;
+    }
+
+    input, select, textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    button {
+      background-color: #1c3d3f;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #174045;
+    }
+
+    .text-info {
+      flex: 1;
+    }
+
+    .text-info h2 {
+      font-size: 28px;
+      color: #1c3d3f;
+      margin-bottom: 15px;
+    }
+
+    .text-info p {
+      font-size: 16px;
+      color: #444;
+      margin-bottom: 20px;
+    }
+
+    .text-info img {
+      width: 100%;
+      max-width: 400px;
+      margin-top: 10px;
+    }
+
+    .sponsor-type, .packages {
+      margin-bottom: 15px;
+    }
+
+    .sponsor-type label, .packages label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: normal;
+    }
+
+    input[type="checkbox"],
+input[type="radio"] {
+  accent-color: #1c3d3f;; /* or any color you want */
+}
+
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #74A0AA;
+      margin-top: 40px;
+    }
+    
+    .footer-links a {
+      color: #1c3d3f;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+    
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="logo">
+      <img src="logo.png" alt="Event Logo">
+    </div>
+    <div class="menu-toggle" id="menuToggle">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="organizers.html">Organizers</a></li>
+      <li><a href="judges.html">Judges</a></li>
+      <li><a href="sponsors.html">Sponsors</a></li>
+      <li><a href="registration.html">Register</a></li>
+      <li><a href="faq.html">FAQs</a></li>
+      <li class="logout-btn"><a href="login.html">Logout</a></li>
+    </ul>
+  </nav>
+
+  <div class="thank-you" id="thankYouMessage">Thank you for your submission!</div>
+  <div class="response-submitted" id="responseSubmittedMessage" style="display:none;">Your response has already been submitted!</div>
+
+  <div class="container">
+    <div class="form-box">
+      <form id="sponsorshipForm">
+        <h2>Sponsorship Form</h2>
+
+        <label for="companyName">Company Name</label>
+        <input type="text" id="companyName" required>
+
+        <label for="contactPerson">Contact Person</label>
+        <input type="text" id="contactPerson" required>
+
+        <label>Select Sponsorship Tier</label>
+        <div class="sponsor-type">
+          <label><input type="radio" name="sponsorTier" value="Platinum - PKR 500,000+" required> Platinum (PKR 500,000+)</label>
+          <label><input type="radio" name="sponsorTier" value="Gold - PKR 300,000"> Gold (PKR 300,000)</label>
+          <label><input type="radio" name="sponsorTier" value="Silver - PKR 150,000"> Silver (PKR 150,000)</label>
+          <label><input type="radio" name="sponsorTier" value="Bronze - PKR 75,000"> Bronze (PKR 75,000)</label>
+        </div>
+
+        <label for="sponsorship">Choose a sponsorship event:</label>
+        <select name="sponsorship" id="sponsorship">
+          <option value="ai_hackathon">AI HACKATHON</option>
+          <option value="web_dev">WEB DEV</option>
+          <option value="genai_masterpiece">GENAI MASTERPIECE</option>
+          <option value="edathon">EDATHON</option>
+          <option value="entrepreneurial_venture">ENTREPRENEURIAL VENTURE</option>
+          <option value="business_scavenger_hunt">BUSINESS SCAVENGER HUNT</option>
+          <option value="case_quest">CASE QUEST</option>
+          <option value="crypto">CRYPTO</option>
+          <option value="squid_bizz">SQUID BIZZ</option>
+          <option value="nascon_fifa_frenzy">NASCON FIFA FRENZY</option>
+          <option value="tekken_iron_fist_championship">TEKKEN IRON FIST CHAMPIONSHIP</option>
+          <option value="nascon_valo_showdown">NASCON VALO SHOWDOWN</option>
+          <option value="nascon_got_talent">NASCON GOT TALENT</option>
+          <option value="bait_baazi">BAIT BAAZI</option>
+          <option value="dish_it_out">DISH IT OUT</option>
+          <option value="battle_of_the_bands">BATTLE OF THE BANDS</option>
+        </select>
+
+
+        <label for="phone">Phone</label>
+        <input type="tel" id="phone" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" required>
+
+        <label for="address">Address</label>
+        <input type="text" id="address" required>
+
+        <button type="submit">Submit</button>
+        <button id="proceedToPaymentBtn" type="button" style="display:none; margin-top: 20px;">Proceed to Payment</button>
+      </form>
+    </div>
+
+    <div class="text-info">
+      <h2>Become a Sponsor!</h2>
+      <p>Support NaSCon, Pakistan's flagship student event! Join us and become a vital partner in empowering innovation and excellence. We offer various sponsorship opportunities tailored to your brand's goals.</p>
+      <img src="sponsorship.png" alt="Sponsorship Illustration">
+      <img src="sponsorship2.webp" alt="Sponsorship Illustration 2">
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 NaSCon. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="faq.html">FAQ</a> | 
+      <a href="contactus.html">Contact</a> | 
+      <a href="home.html">About</a>
+    </div>
+  </footer>
+
+ 
+
+<script>
+  const form = document.getElementById('sponsorshipForm');
+  const thankYouMessage = document.getElementById('thankYouMessage');
+  const proceedToPaymentBtn = document.getElementById('proceedToPaymentBtn');
+  const responseSubmittedMessage = document.getElementById('responseSubmittedMessage');
+
+  // Check if the form has been submitted already
+  let isFormSubmitted = false;
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    // If the form has already been submitted, show a message
+    if (isFormSubmitted) {
+      responseSubmittedMessage.style.display = 'block';
+      setTimeout(() => {
+        responseSubmittedMessage.style.display = 'none';
+      }, 3000);
+      return;  // Stop further execution
+    }
+
+    const data = {
+      companyName: document.getElementById('companyName').value,
+      contactPerson: document.getElementById('contactPerson').value,
+      sponsorTier: document.querySelector('input[name="sponsorTier"]:checked').value,
+      sponsorship: document.getElementById('sponsorship').value,
+      phone: document.getElementById('phone').value,
+      email: document.getElementById('email').value,
+      address: document.getElementById('address').value
+    };
+  
+    try {
+      const response = await fetch('/register-sponsor', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+
+      const result = await response.text();
+      
+      if (response.ok) {
+        // Show Thank You Message
+        thankYouMessage.style.display = 'block';
+        setTimeout(() => {
+          thankYouMessage.style.top = '20px';
+        }, 100);
+    
+        setTimeout(() => {
+          thankYouMessage.style.top = '-80px';
+          setTimeout(() => {
+            thankYouMessage.style.display = 'none';
+          }, 500);
+        }, 3000);
+    
+        // Set the form submission flag to true
+        isFormSubmitted = true;
+    
+        // Show "Proceed to Payment" button
+        proceedToPaymentBtn.style.display = 'block';
+
+        // Reset form
+        form.reset();
+      } else {
+        alert('Error: ' + result);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Error submitting sponsorship: ' + error.message);
+    }
+  });
+
+  document.getElementById('proceedToPaymentBtn').addEventListener('click', function() {
+    window.location.href = "paymentform.html";
+  });
+</script>
+</body>
+</html>

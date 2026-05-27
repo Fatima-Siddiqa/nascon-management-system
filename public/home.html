@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - Nascon</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">
+      <img src="logo.png" alt="Event Logo">
+    </div>
+    <div class="menu-toggle" id="menuToggle">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="organizers.html">Organizers</a></li>
+      <li><a href="judges.html">Judges</a></li>
+      <li><a href="sponsors.html">Sponsors</a></li>
+      <li><a href="registration.html">Register</a></li>
+      <li><a href="faq.html">FAQs</a></li>
+      <li class="logout-btn"><a href="login.html">Logout</a></li>
+
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Welcome to NASCON </h1>
+    <p>National Students Convention | where talent meets opportunity!</p>
+    <a href="registration.html" class="btn-primary">Register Now</a>
+    
+  </section>
+
+  <!-- About Section -->
+  <section class="about">
+    <h2>About The Event</h2>
+    <p>NASCON (National Solutions Convention) is FAST-NU's flagship annual event featuring a wide range of competitions across domains like coding, gaming, singing, cooking, and more. Students from universities across Pakistan participate in this exciting three-day event.Join us for an unforgettable experience of learning, networking, and fun. Meet industry leaders and be part of transformative sessions, competitions.</p>
+        <div class="event-gallery">
+          <img src="img1.PNG" alt="Event Photo 1">
+          <img src="img2.PNG" alt="Event Photo 2">
+          <img src="img3.PNG" alt="Event Photo 3">
+        </div>
+      </div>
+    </section>
+    
+  </section>
+
+  <!-- Highlights Section -->
+  <section class="highlights">
+    <div class="highlight-card">
+      <h3>Top Speakers</h3>
+      <p>Learn from industry experts and world-renowned personalities.</p>
+    </div>
+    <div class="highlight-card">
+      <h3>Networking Opportunities</h3>
+      <p>Meet fellow professionals, investors, and enthusiasts.</p>
+    </div>
+    <div class="highlight-card">
+      <h3>Events</h3>
+      <p>Hands-on experience with the latest tools and strategies.</p>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="cta">
+    <div class="cta-container">
+      <div class="cta-left">
+        <h2>Ready to Join Us?</h2>
+        <a href="registration.html" class="btn-primary">Register Now</a>
+      </div>
+      <div class="cta-right">
+        <h2>Become a Sponsor!</h2>
+        <a href="sponsorshipform.html" class="btn-secondary">Sponsor Us</a>
+      </div>
+    </div>
+  </section>
+  
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 NASCON. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="faq.html">FAQ</a> | 
+      <a href="contactus.html">Contact</a> | 
+      <a href="home.html">About</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>

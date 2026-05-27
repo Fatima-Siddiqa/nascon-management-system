@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login | NASCON</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    body {
+      background-image: url('log.PNG');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-container {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 450px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #1c3d3f;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #1c3d3f;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #163031;
+    }
+
+    .link {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    .link a {
+      color: #1c3d3f;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <h2>Login to NASCON</h2>
+    <form id="login-form">
+      <div class="form-group">
+        <label for="username">Full Name:</label>
+        <input type="text" id="username" required>
+      </div>
+
+      <div class="form-group">
+        <label for="role">Login As:</label>
+        <select id="role" required>
+          <option value="">-- Select Role --</option>
+          <option value="admin">Admin</option>
+          <option value="organizer">Event Organizer</option>
+          <option value="sponsor">Sponsor</option>
+          <option value="participant">Participant</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" required>
+      </div>
+
+      <button type="submit">Login</button>
+      <div class="link">Don't have an account? <a href="signup.html">Sign up here</a></div>
+    </form>
+  </div>
+
+  <script>
+    // Get stored signup data
+    const storedName = localStorage.getItem("signupName");
+    const storedPassword = localStorage.getItem("signupPassword");
+    const storedRole = localStorage.getItem("signupRole");
+
+    document.getElementById("login-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value;
+      const role = document.getElementById("role").value;
+
+      if (username === storedName && password === storedPassword && role === storedRole) {
+        alert("Login successful!");
+
+        // Redirect based on role
+        if (role === "admin") {
+          window.location.href = "organizerdashboard.html";
+        } else if (role === "organizer") {
+          window.location.href = "organizerdashboard.html";
+        } else if (role === "sponsor") {
+          window.location.href = "sponsors.html";
+        } else if (role === "participant") {
+          window.location.href = "home.html";
+        }
+      } else {
+        alert("Invalid username, password, or role. Please try again.");
+      }
+    });
+  </script>
+
+</body>
+</html>

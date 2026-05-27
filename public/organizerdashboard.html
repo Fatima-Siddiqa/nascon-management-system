@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Organizer Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    body {
+      background: #f0f2f5;
+      padding: 30px;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 28px;
+    }
+
+    .dashboard-container {
+      display: flex;
+      gap: 30px;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .participants-section {
+      flex: 3;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      overflow-x: auto;
+      max-height: 90vh;
+    }
+
+    .participants-section h2 {
+      margin-top: 20px;
+      margin-bottom: 10px;
+      font-size: 20px;
+      color: #444;
+    }
+
+    .sponsors-section {
+      flex: 1.2;
+      min-width: 320px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px 10px;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    th {
+      background-color: #1c3d3f;
+      font-weight: 600;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #b0cbd1;;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    @media (max-width: 768px) {
+      .dashboard-container {
+        flex-direction: column;
+      }
+
+      .sponsors-section {
+        order: -1;
+      }
+    }
+    .logout-btn {
+      background-color: #1c3d3f;
+      color: white;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .logout-btn:hover {
+      background-color: #154041;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      font-size: 28px;
+    }
+  </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Organizer Dashboard</h1>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+      
+    <div class="dashboard-container">
+    <div class="participants-section" id="dashboard"></div>
+
+    <div class="sponsors-section">
+      <h2>Sponsor Registrations</h2>
+      <table id="sponsors-table">
+        <thead>
+          <tr>
+            <th>Company</th>
+            <th>Contact</th>
+            <th>Type</th>
+            <th>Payment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Sponsors will be loaded here -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    function logout() {
+      window.location.href = 'login.html';
+    }
+    // Load participants by event
+    async function loadDashboard() {
+      const res = await fetch('/api/participants-by-event');
+      const data = await res.json();
+      const dashboard = document.getElementById('dashboard');
+      dashboard.innerHTML = '';
+      for (const [event, participants] of Object.entries(data)) {
+        let html = `<h2>${event}</h2>`;
+        html += `<table>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>University</th>
+            <th>Type</th>
+            <th>Team ID</th>
+          </tr>`;
+        for (const p of participants) {
+          html += `<tr>
+            <td>${p.UName || ''}</td>
+            <td>${p.Email || ''}</td>
+            <td>${p.Address || ''}</td>
+            <td>${p.PhoneNo || ''}</td>
+            <td>${p.UniversityName || ''}</td>
+            <td>${p.PType || ''}</td>
+            <td>${p.TeamID || ''}</td>
+          </tr>`;
+        }
+        html += `</table>`;
+        dashboard.innerHTML += html;
+      }
+    }
+
+    // Load sponsors
+    async function loadSponsors() {
+      const res = await fetch('/api/sponsors');
+      const sponsors = await res.json();
+      const tbody = document.querySelector('#sponsors-table tbody');
+      tbody.innerHTML = '';
+      sponsors.forEach(s => {
+        tbody.innerHTML += `
+          <tr>
+            <td>${s.CompanyName || ''}</td>
+            <td>${s.ContactPerson || ''}</td>
+            <td>${s.SponsorType || ''}</td>
+            <td>${s.Payment_status || ''}</td>
+          </tr>
+        `;
+      });
+    }
+
+    loadDashboard();
+    loadSponsors();
+  </script>
+</body>
+</html>

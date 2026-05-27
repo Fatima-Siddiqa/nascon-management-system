@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up | NASCON</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    body {
+      background-image: url('log.PNG'); 
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .signup-container {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 450px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #1c3d3f;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #1c3d3f;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #1c3d3f;
+    }
+
+    .message {
+      text-align: center;
+      margin-top: 15px;
+      color: green;
+      font-weight: bold;
+      display: none;
+    }
+
+    .link {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    .link a {
+      color: #1c3d3f;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="signup-container">
+    <h2>Create Your Account</h2>
+    <form id="signup-form">
+        <div class="form-group">
+          <label for="fullname">Full Name:</label>
+          <input type="text" id="fullname" required>
+        </div>
+      
+        <div class="form-group">
+          <label for="email">Email Address:</label>
+          <input type="email" id="email" required>
+        </div>
+      
+        <div class="form-group">
+          <label for="role">Register As:</label>
+          <select id="role" required>
+            <option value="">-- Select Role --</option>
+            <option value="admin">Admin</option>
+            <option value="organizer">Event Organizer</option>
+            <option value="sponsor">Sponsor</option>
+            <option value="participant">Participant</option>
+          </select>
+        </div>
+      
+        <div class="form-group">
+          <label for="password">Create Password:</label>
+          <input type="password" id="password" required>
+        </div>
+        <div class="form-group">
+          <label for="confirm-password">Confirm Password:</label>
+          <input type="password" id="confirm-password" required>
+        </div>
+      
+        <button type="submit">Sign Up</button>
+        <div class="message" id="success-message">Account created successfully!</div>
+        <div class="message" id="error-message" style="color: red; display: none;">Passwords do not match!</div>
+      
+        <div class="link">Already have an account? <a href="login.html">Login here</a></div>
+      </form>
+      
+  </div>
+
+  <script>
+    document.getElementById("signup-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+  
+      const fullName = document.getElementById("fullname").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const role = document.getElementById("role").value;
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirm-password").value;
+      const errorMsg = document.getElementById("error-message");
+      const successMsg = document.getElementById("success-message");
+  
+      if (password !== confirmPassword) {
+        errorMsg.style.display = "block";
+        successMsg.style.display = "none";
+        return;
+      }
+  
+      // Hide error message, show success
+      errorMsg.style.display = "none";
+      successMsg.style.display = "block";
+  
+      // Save to localStorage (not secure, for demo purposes only)
+      localStorage.setItem("signupName", fullName);
+      localStorage.setItem("signupEmail", email);
+      localStorage.setItem("signupPassword", password);
+      localStorage.setItem("signupRole", role);
+  
+      // Redirect after a short delay
+      setTimeout(() => {
+        window.location.href = "login.html";
+      }, 1500);
+    });
+  </script>
+  
+
+
+</body>
+</html>

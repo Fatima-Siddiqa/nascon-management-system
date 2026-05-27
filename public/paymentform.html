@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Form</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    body {
+      background-color: #f7f7f7;
+      padding-top: 70px;
+      overflow-x: hidden;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      background-color: white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .logo img {
+      height: 60px;
+      width: auto;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links li a:hover {
+      color: #1c3d3f;
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .menu-toggle div {
+      width: 25px;
+      height: 3px;
+      background: #333;
+      margin: 5px 0;
+      transition: all 0.3s ease;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: white;
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 100%;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        border-top: 1px solid #ccc;
+        padding: 15px 0;
+      }
+      .nav-links .logout-btn {
+      margin-left: auto;
+      background-color: #1c3d3f;
+      border-radius: 5px;
+    }
+    
+    .nav-links .logout-btn a {
+      color: white;
+      padding: 8px 12px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .nav-links .logout-btn a:hover {
+      background-color: #74A0AA;
+      border-radius: 5px;
+    }
+    
+
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+    }
+
+    .thank-you {
+      display: none;
+      position: fixed;
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #4CAF50;
+      color: white;
+      padding: 15px 30px;
+      border-radius: 8px;
+      font-weight: 600;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      z-index: 1001;
+      transition: top 0.5s ease;
+    }
+
+    .response-submitted {
+      display: none;
+      position: fixed;
+      top: 20px; /* Ensure it's positioned well above the form */
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #FF5733; /* Change this to any color you prefer */
+      color: white;
+      padding: 15px 30px;
+      border-radius: 8px;
+      font-weight: 600;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      z-index: 1001; /* Ensure it appears above other elements */
+      transition: top 0.5s ease;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px 10px;
+      align-items: flex-start;
+      gap: 40px;
+    }
+
+    .form-box {
+      flex: 1;
+      background: white;
+      padding: 20px 25px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin: 10px 0 5px;
+      font-weight: 500;
+    }
+
+    input, select {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    button {
+      background-color: #1c3d3f;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #174045;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #74A0AA;
+      margin-top: 40px;
+    }
+
+    .footer-links a {
+      color: #1c3d3f;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    .payment-method label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="radio"] {
+      accent-color: #1c3d3f;
+    }
+
+    .payment-method-container {
+      margin-bottom: 20px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+
+    
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="logo">
+      <img src="logo.png" alt="Event Logo">
+    </div>
+    <div class="menu-toggle" id="menuToggle">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="organizers.html">Organizers</a></li>
+      <li><a href="judges.html">Judges</a></li>
+      <li><a href="sponsors.html">Sponsors</a></li>
+      <li><a href="registration.html">Register</a></li>
+      <li><a href="faq.html">FAQs</a></li>
+      <li class="logout-btn"><a href="login.html">Logout</a></li>
+    </ul>
+  </nav>
+
+  <div class="thank-you" id="thankYouMessage">Thank you for your payment!</div>
+  <div class="response-submitted" id="responseSubmittedMessage" style="display:none;">Your payment has already been processed!</div>
+
+  <div class="container">
+    <div class="form-box">
+      <!-- Replace only the <form> block inside .form-box with the following -->
+      <form id="paymentForm" enctype="multipart/form-data">
+        <h2>Payment Form</h2>
+
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phone">Phone</label>
+        <input type="tel" id="phone" name="phone" required>
+
+        <label for="amount">Amount</label>
+        <input type="number" id="amount" name="amount" min="1" required>
+
+        <label for="payDate">Payment Date</label>
+        <input type="date" id="payDate" name="payDate" required>
+
+        <div class="payment-method-container">
+          <label>Payment Method</label>
+          <div class="payment-method">
+            <label><input type="radio" name="paymentMethod" value="Manual" required> Manual</label>
+            <label><input type="radio" name="paymentMethod" value="Online"> Online</label>
+          </div>
+        </div>
+
+        <div id="onlineFields" style="display: none;">
+          <div class="form-group"> 
+          <label for="accountName">Account Name</label>
+          <input type="text" id="accountName" name="accountName">
+          </div>
+
+          <div class="form-group"> 
+          <label for="accountContact">Contact Number</label>
+          <input type="text" id="accountContact" name="accountContact">
+          </div>
+
+          <div class="form-group"> 
+          <label for="accountId">Account ID</label>
+          <input type="text" id="accountId" name="accountId">
+          </div>
+
+          <div class="form-group">
+          <label for="proof">Proof of Payment (upload receipt)</label>
+          <input type="file" id="proof" name="proof" accept=".jpg,.png,.pdf">
+          </div>
+        </div>
+
+        <button type="submit">Submit Payment</button>
+      </form>
+
+    </div>
+  </div>
+  
+
+  <footer>
+    <p>© 2025 Event Corp. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="faq.html">FAQ</a> | 
+      <a href="contactus.html">Contact</a> | 
+      <a href="home.html">About</a>
+    </div>
+  </footer>
+
+  <script>
+    const form = document.getElementById('paymentForm');
+    const thankYouMessage = document.getElementById('thankYouMessage');
+    const responseSubmittedMessage = document.getElementById('responseSubmittedMessage');
+  
+    // Check if the form has been submitted already
+    let isFormSubmitted = false;
+  
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+  
+      // If the form has already been submitted, show a message
+      if (isFormSubmitted) {
+        responseSubmittedMessage.style.display = 'block';
+        setTimeout(() => {
+          responseSubmittedMessage.style.display = 'none';
+        }, 3000);
+        return;  // Stop further execution
+      }
+  
+      // Show Thank You Message
+      thankYouMessage.style.display = 'block';
+      setTimeout(() => {
+        thankYouMessage.style.top = '20px';
+      }, 100);
+  
+      setTimeout(() => {
+        thankYouMessage.style.top = '-80px';
+        setTimeout(() => {
+          thankYouMessage.style.display = 'none';
+        }, 500);
+      }, 3000);
+  
+      // Set the form submission flag to true
+      isFormSubmitted = true;
+  
+      // Collect form data
+      const data = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        amount: document.getElementById('amount').value,
+        payDate: document.getElementById('payDate').value,
+        paymentMethod: document.querySelector('input[name="paymentMethod"]:checked').value,
+        userType: document.getElementById('userType').value // Make sure this hidden field exists!
+      };
+  
+      try {
+        const response = await fetch('/submit-payment', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        const result = await response.text();
+        alert(result);
+      } catch (error) {
+        alert('Error submitting payment: ' + error.message);
+      }
+    });
+  
+    // Payment method radio logic
+    const paymentMethodRadios = document.getElementsByName('paymentMethod');
+    const onlineFields = document.getElementById('onlineFields');
+  
+    paymentMethodRadios.forEach(radio => {
+      radio.addEventListener('change', function () {
+        if (this.value === 'Online') {
+          onlineFields.style.display = 'block';
+          document.getElementById('accountName').required = true;
+          document.getElementById('accountContact').required = true;
+          document.getElementById('accountId').required = true;
+          document.getElementById('proof').required = true;
+        } else {
+          onlineFields.style.display = 'none';
+          document.getElementById('accountName').required = false;
+          document.getElementById('accountContact').required = false;
+          document.getElementById('accountId').required = false;
+          document.getElementById('proof').required = false;
+        }
+      });
+    });
+  </script>
+</body>
+</html>

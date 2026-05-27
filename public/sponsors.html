@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sponsors</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        box-sizing: border-box;
+        background-color: white;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        }
+
+        .logo img {
+        height: 60px;
+        width: auto;
+        }
+
+        .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 30px;
+        }
+
+        .nav-links .logout-btn {
+      margin-left: auto;
+      background-color: #1c3d3f;
+      border-radius: 5px;
+    }
+    
+    .nav-links .logout-btn a {
+      color: white;
+      padding: 8px 12px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .nav-links .logout-btn a:hover {
+      background-color: #74A0AA;
+      border-radius: 5px;
+    }
+    
+
+
+        .nav-links li a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        transition: color 0.3s;
+        }
+
+        .nav-links li a:hover {
+        color: #1c3d3f;
+        }
+
+        .menu-toggle {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        }
+
+        .menu-toggle div {
+        width: 25px;
+        height: 3px;
+        background: #333;
+        margin: 5px 0;
+        transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+        .nav-links {
+            display: none;
+            flex-direction: column;
+            background: white;
+            position: absolute;
+            top: 70px;
+            right: 0;
+            width: 100%;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            border-top: 1px solid #ccc;
+            padding: 15px 0;
+        }
+
+        .nav-links.active {
+            display: flex;
+        }
+
+        .menu-toggle {
+            display: flex;
+        }
+        }
+    
+    section {
+      /* padding: 60px 20px; */
+      text-align: center;
+    }
+
+    .sponsor-card {
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  padding: 50px 30px 30px; /* extra padding-top to make space for label */
+  margin: 60px auto 30px; /* extra margin-top for visual space */
+  max-width: 900px;
+  position: relative; /* so the badge can be absolutely positioned */
+}
+
+.sponsor-rank {
+  position: absolute;
+  top: -20px; /* move it slightly above the card */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #1c3d3f; /* dark background */
+  color: white;
+  padding: 10px 25px;
+  border-radius: 25px;
+  font-size: 20px;
+  font-weight: 500;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+
+    .sponsor-card h2 {
+      font-size: 28px;
+      color: #1c3d3f;
+      margin-bottom: 20px;
+    }
+
+    .sponsor-logos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .sponsor-logos img {
+      width: 180px;
+      height: auto;
+      background: white;
+      object-fit: contain;
+      padding: 10px;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+    }
+
+    .sponsor-logos img:hover {
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 600px) {
+      .sponsor-logos img {
+        width: 140px;
+      }
+    }
+    .footer {
+    background-color: #74A0AA;
+    text-align: center;
+    padding: 40px 20px;
+    position: relative;
+    bottom: 0;
+}
+
+.footer-top {
+    margin-bottom: 40px; /* Add space between button section and text section */
+}
+
+.footer-bottom p {
+    margin-bottom: 10px;
+}
+
+.footer-bottom {
+    margin-top: 40px;
+}
+
+  
+  .footer-links a {
+    color:#1c3d3f;
+    text-decoration: none;
+    margin: 0 5px;
+  }
+  
+  .footer-links a:hover {
+    text-decoration: underline;
+  }
+
+.join-text {
+    color: white;
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.become-sponsor-btn {
+    background-color: #1c3d3f;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-size: 16px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    margin-bottom: 40px;
+}
+
+.become-sponsor-btn:hover {
+    background-color: #174045;
+}
+  </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+          <img src="logo.png" alt="Event Logo">
+        </div>
+        <div class="menu-toggle" id="menuToggle">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="home.html">Home</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="organizers.html">Organizers</a></li>
+          <li><a href="judges.html">Judges</a></li>
+          <li><a href="sponsors.html">Sponsors</a></li>
+          <li><a href="registration.html">Register</a></li>
+          <li><a href="faq.html">FAQs</a></li>
+          <li class="logout-btn"><a href="login.html">Logout</a></li>
+        </ul>
+    </nav>
+
+  <!-- Top Heading Section -->
+  <section style="text-align: center; padding-top: 70px;">
+    <h1 style="font-size: 36px; color: #1c3d3f; margin-bottom: 8px;">Our Esteemed Sponsors From Last Year</h1>
+    <p style="font-size: 18px; color: #555; margin-top: 0;">We are proud to partner with organizations that believe in our vision.</p>
+  </section>
+
+  <!-- Platinum Sponsors Card -->
+  <section>
+    <div class="sponsor-card">
+      <div class="sponsor-rank">Platinum Sponsors</div>
+      <div class="sponsor-logos">
+        <img src="platinum1.png" alt="Platinum Sponsor 1">
+        <img src="platinum2.png" alt="Platinum Sponsor 2">
+      </div>
+    </div>
+  </section>
+  
+
+  <!-- Gold Sponsors Card -->
+  <section>
+    <div class="sponsor-card">
+      <div class="sponsor-rank">Gold Sponsors</div>
+      <div class="sponsor-logos">
+        <img src="gold1.png" alt="Gold Sponsor 1">
+        <img src="gold2.png" alt="Gold Sponsor 2">
+        <img src="gold3.png" alt="Gold Sponsor 3">
+        <img src="gold4.png" alt="Gold Sponsor 4">
+      </div>
+    </div>
+  </section>
+
+  <!-- Silver Sponsors Card -->
+  <section>
+    <div class="sponsor-card">
+      <div class="sponsor-rank">Silver Sponsors</div>
+      <div class="sponsor-logos">
+        <img src="silver1.png" alt="Silver Sponsor 1">
+        <img src="silver2.png" alt="Silver Sponsor 2">
+        <img src="silver3.png" alt="Silver Sponsor 3">
+        <img src="silver4.png" alt="Silver Sponsor 4">
+        <img src="silver5.png" alt="Silver Sponsor 5">
+      </div>
+    </div>
+  </section>
+
+  <!-- Bronze Sponsors Card -->
+  <section>
+    <div class="sponsor-card">
+      <div class="sponsor-rank">Bronze Sponsors</div>
+      <div class="sponsor-logos">
+        <img src="bronze1.png" alt="Bronze Sponsor 1">
+        <img src="bronze2.png" alt="Bronze Sponsor 2">
+        <img src="bronze3.png" alt="Bronze Sponsor 3">
+        <img src="bronze4.png" alt="Bronze Sponsor 4">
+        <img src="bronze5.png" alt="Bronze Sponsor 5">
+        <img src="bronze6.png" alt="Bronze Sponsor 6">
+        <img src="bronze7.png" alt="Bronze Sponsor 7">
+        <img src="bronze8.png" alt="Bronze Sponsor 8">
+        <img src="bronze9.jpeg" alt="Bronze Sponsor 9">
+        <img src="bronze10.png" alt="Bronze Sponsor 10">
+        <img src="bronze11.png" alt="Bronze Sponsor 11">
+      </div>
+    </div>
+  </section>
+
+    <footer class="footer">
+        <div class="footer-top">
+            <p class="join-text">Join Our Team!</p>
+            <a href="sponsorshipform.html" class="become-sponsor-btn">Become a Sponsor</a>
+        </div>
+    
+        <div class="footer-bottom">
+            <p>© 2025 Event Name. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="faq.html">FAQ</a> | 
+                <a href="contactus.html">Contact</a> | 
+                <a href="home.html">About</a>
+            </div>
+        </div>
+    </footer>
+    
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+    
+    
+        menuToggle.addEventListener('click', () => {
+          navLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
